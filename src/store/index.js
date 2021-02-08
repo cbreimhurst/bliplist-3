@@ -54,12 +54,6 @@ export default new Vuex.Store({
             })
         },
         async logout({commit}){
-            console.log('asdf');
-              // let { error } = await supabase.auth.signOut()
-              // this.error = error
-              // localStorage.removeItem('token')
-              // this.$router.push('/')
-
               await supabase.auth
               .signOut()
               .then((response) => {
@@ -74,5 +68,6 @@ export default new Vuex.Store({
     getters : {
       isLoggedIn: state => !!state.token,
       authStatus: state => state.status,
+      userInfo: state => state.user,
     }
   })
