@@ -7,9 +7,7 @@
       <button @click="logout"  v-if="isLoggedIn">Logout</button>
     </div>
     <router-view/>
-    {{isLoggedIn}}
-
-    <pre v-if="userInfo">{{userInfo}}</pre>
+  
     <pre v-if="this.$store.state">{{$store.state}}</pre>
   </div>
 </template>

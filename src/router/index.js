@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HomePage from './../pages/Home.vue'
-// import Lists from './../pages/Lists.vue'
-// import List from './../pages/List.vue'
+import Lists from './../components/Lists.vue'
+import List from './../components/List.vue'
 // import SignUp from './../pages/SignUp.vue'
 import LogIn from './../components/Login.vue'
 
@@ -17,11 +17,11 @@ export default new Router({
     },
       { 
         path: '/lists', 
-      //  component: Lists 
+        component: Lists 
     },
       { 
         path: '/list/:uuid', 
-      //  component: List 
+        component: List 
       },
       { 
         path: '/signup', 
