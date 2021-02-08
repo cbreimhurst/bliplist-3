@@ -20,10 +20,10 @@ export default new Vuex.Store({
           auth_request(state){
             state.status = 'loading'
           },
-          auth_success(state, token, user){
+          auth_success(state, token){
             state.status = 'success'
             state.token = token
-            state.user = user
+            state.user = supabase.auth.user()
           },
           auth_error(state){
             state.status = 'error'
@@ -52,9 +52,6 @@ export default new Vuex.Store({
                 commit('auth_error')
               }
             })
-
-
-       
         },
         async logout({commit}){
             console.log('asdf');
@@ -75,6 +72,7 @@ export default new Vuex.Store({
           }
     },
     getters : {
-  
+      isLoggedIn: state => !!state.token,
+      authStatus: state => state.status,
     }
   })
