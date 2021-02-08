@@ -7,9 +7,7 @@
       <button @click="logout">Logout</button>
     </div>
     <router-view/>
-    <pre v-if="this.$store.state.user">{{$store.user}}</pre>
-    <pre v-if="this.$store.state.error">{{$store.error}}</pre>
-    <pre v-if="this.$store.state.token">{{$store.token}}</pre>
+    <pre v-if="this.$store.state">{{$store.state}}</pre>
   </div>
 </template>
 
