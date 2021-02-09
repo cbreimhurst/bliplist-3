@@ -3,7 +3,7 @@
         <h2>Lists</h2>
          <ul>
             <li v-bind:key="list.uuid" :data-id="list.uuid" v-for="list in listsArr">
-                <a :href="'/list/'+ list.uuid">{{list.name}}</a>
+                <a :href="'/list/'+ list.uuid">{{list.name}} <span v-if="list.list_length">({{list.list_length}})</span></a>
             </li>
         </ul>
         <!-- <pre>{{userInfo}}</pre> -->

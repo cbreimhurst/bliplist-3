@@ -3,6 +3,7 @@
     <li class="check">
             <label :for="task.id" @click="$emit('complete-task', task.uuid)">
                 <input type="checkbox" :name="task.id" v-model="task.completed"/>
+                <div></div>
             </label>
     </li>
     <li class="title">
@@ -156,5 +157,76 @@ ul.task-item.completed textarea  {
 .title textarea {
   font-weight: 600;
 }
+
+
+
+
+input[type=checkbox]{
+  position: absolute;
+  visibility: hidden;
+}
+
+
+
+
+.task-item li label {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  display: block;
+}
+
+
+.task-item li label div {
+  display: block;
+  position: absolute;
+  border: 5px solid #AAAAAA;
+  border-radius: 100%;
+  height: 15px;
+  width: 15px;
+  top: 10px;
+  left: 0px;
+  z-index: 5;
+  transition: border .25s linear;
+  -webkit-transition: border .25s linear;
+}
+
+
+.task-item li:hover div {
+  border: 5px solid #2c3e50;
+}
+
+.task-item li label div::before {
+  display: block;
+  position: absolute;
+  content: '';
+  border-radius: 100%;
+height: 9px;
+width: 9px;
+top: 3px;
+left: 3px;
+  margin: auto;
+  transition: background 0.25s linear;
+  -webkit-transition: background 0.25s linear;
+}
+
+
+.task-item li label input[type=checkbox]:checked ~ div {
+  border: 5px solid #006135;
+}
+
+.task-item li label input[type=checkbox]:checked ~ div::before{
+  background: #006135;
+}
+
+
+.task-item.completed .title textarea {
+  background: #fff;
+}
+
+.task-item.completed .desc {
+  display: none;
+}
+
 
 </style>

@@ -175,11 +175,25 @@ export default {
             this.tasksArr.splice(index, 1)
         })
         .subscribe();
+
+    
+
       },
         async created() {
             this.listUUID = this.$route.params.uuid;
             this.loadTasks();
         },
+        watch: {
+            tasksArr: {
+               async handler(list) {
+                    let length = list.length;
+                      await supabase
+                        .from('lists')
+                        .update({ list_length: length })
+                        .eq('uuid', this.listUUID)
+                }
+            }
+        }
 }
 
     </script>
