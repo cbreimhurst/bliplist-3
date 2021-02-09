@@ -137,5 +137,24 @@ ul.task-item.completed textarea  {
   }
 
 
+.task-item {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100%;
+  margin: 1rem 0 0;
+}
+
+
+.check { grid-area: 1 / 1 / 3 / 2; }
+.title { grid-area: 1 / 2 / 2 / 3; }
+.desc { grid-area: 2 / 2 / 3 / 3; } 
+
+
+.title textarea {
+  font-weight: 600;
+}
 
 </style>
