@@ -1,6 +1,16 @@
 <template>
     <div>
-        <h2>{{title}}</h2>
+        <h2>
+            <input 
+      type="text" 
+      spellcheck="false" 
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      v-model="title" 
+      v-on:blur="updateTitle"
+      >
+        </h2>
         <p>{{desc}}</p>
         <ul class="list">
             <li v-bind:key="task.uuid" :data-id="task.uuid" v-for="task in tasksArr">
@@ -78,6 +88,13 @@ export default {
             
             this.tasksArr = tasks;
         },
+        async updateTitle() {
+            let { data, error } = await supabase
+            .from('lists')
+            .update({ name: this.title })
+            .eq('uuid', this.listUUID)
+            console.log(data+error)
+            }
        },
       mounted() {
         supabase
