@@ -4,7 +4,15 @@
         <p>{{desc}}</p>
         <ul class="list">
             <li v-bind:key="task.uuid" :data-id="task.uuid" v-for="task in tasksArr">
-            {{task.title}}
+                <input type="checkbox">
+            <input 
+      type="text" 
+      spellcheck="false" 
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      :value="task.title"
+      >
             </li>
         </ul>
         <a href="/lists" class="all-lists"><button>← All Lists</button></a>
@@ -87,3 +95,14 @@ export default {
 }
 
     </script>
+
+
+    <style>
+   :checked + input {
+    text-decoration: line-through;
+    opacity: .5;
+}
+input[type="text"] {
+    padding: 10px;
+}
+    </style>

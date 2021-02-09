@@ -2,7 +2,7 @@
  <div>
 
       <button @click="newlist">New List</button>
-
+{{userInfo}}
  </div>
 </template>
 
@@ -19,11 +19,19 @@ const supabase = createClient(supabaseUrl, supabaseKey)
             
         }
     },
+  computed : {
+    isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
+    userInfo : function(){ return this.$store.getters.userInfo}
+  },
     methods: {
       async newlist () {
         let uuid = uuidv4()
+        let userUUID = ''
+        if(this.isLoggedIn){
+            userUUID = this.userInfo.id
+        }
         const { data, error } = 
-        await supabase.from("lists").insert({'uuid': uuid})
+        await supabase.from("lists").insert({'uuid': uuid, 'user_uuid': userUUID})
         .then(() => this.$router.push('/list/'+uuid));
         console.log(data)
         console.log(error)
