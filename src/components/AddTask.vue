@@ -1,6 +1,6 @@
 <template>
 <div class="add-task-wrap">
-    <button @click="addTask" class="add-task">Add a task</button>
+    <button @click="addTask" class="add-task">+ Add a task</button>
     </div>
 </template>
 
@@ -35,5 +35,18 @@ export default {
 </script>
 
 <style scoped>
-
+button {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    background: #eee;
+    border-radius: 84px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+}
 </style>

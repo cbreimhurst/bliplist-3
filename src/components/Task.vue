@@ -15,6 +15,7 @@
             @change="$emit('edit-task-title', task.uuid)"
             v-on:keyup="autoHeight"
             :id="'title-' + task.uuid"
+            rows="1"
         >
             </textarea>
         
@@ -28,6 +29,8 @@
             v-model="task.text" 
             @change="$emit('edit-task-desc', task.uuid)"
             v-on:keyup="autoHeight"
+            :id="'desc-' + task.uuid"
+            rows="1"
         >
                 </textarea>
     </li>
@@ -64,7 +67,8 @@ export default {
         + parseInt(computed.getPropertyValue('padding-top'), 10)
         + field.scrollHeight
         + parseInt(computed.getPropertyValue('padding-bottom'), 10)
-        + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
+        + parseInt(computed.getPropertyValue('border-bottom-width'), 10)
+        - 20 ;
 
         field.style.height = height + 'px';
     }
@@ -88,12 +92,14 @@ export default {
             // Get the computed styles for the element
             var computed = window.getComputedStyle(textarea);
 
+console.log(textarea.scrollHeight)
             // Calculate the height
             var height = parseInt(computed.getPropertyValue('border-top-width'), 10)
             + parseInt(computed.getPropertyValue('padding-top'), 10)
             + textarea.scrollHeight
             + parseInt(computed.getPropertyValue('padding-bottom'), 10)
-            + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
+            + parseInt(computed.getPropertyValue('border-bottom-width'), 10)
+            - 20 ;
 
             textarea.style.height = height + 'px';
         });
@@ -121,8 +127,9 @@ border: none;
 resize: none;
 width: 100%;
 max-width: 500px;
-/* min-height: 1.5rem; */
+min-height: 1.5rem;
     max-height: 50vh;
+    overflow: hidden;
 }
 
 ul.task-item.completed textarea  {
