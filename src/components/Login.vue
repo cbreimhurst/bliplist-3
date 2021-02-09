@@ -32,7 +32,7 @@
         let email = this.logIn.email
         let password = this.logIn.password
         this.$store.dispatch('login', { email, password })
-       // .then(() => this.$router.push('/lists'))
+        .then(() => this.$router.push('/lists'))
       }
     }
   }
