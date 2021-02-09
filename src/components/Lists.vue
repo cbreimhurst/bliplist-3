@@ -6,7 +6,7 @@
                 <a :href="'/list/'+ list.uuid">{{list.name}}</a>
             </li>
         </ul>
-        <pre>{{userInfo}}</pre>
+        <!-- <pre>{{userInfo}}</pre> -->
         
         {{error}}
     </div>

@@ -8,7 +8,7 @@
     </div>
     <router-view/>
   
-    <pre v-if="this.$store.state">{{$store.state}}</pre>
+    <!-- <pre v-if="this.$store.state">{{$store.state}}</pre> -->
   </div>
 </template>
 

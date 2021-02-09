@@ -1,5 +1,7 @@
 <template>
     <div>
+        <h2>{{title}}</h2>
+        <p>{{desc}}</p>
         <ul class="list">
             <li v-bind:key="task.uuid" :data-id="task.uuid" v-for="task in tasksArr">
             {{task.title}}
@@ -36,6 +38,7 @@ export default {
             tasksArr: [],
             error: null,
             title: null,
+            desc: null,
         }
     },
        methods: {
@@ -51,6 +54,7 @@ export default {
             this.listUpdated = lists[0].updated_at
             this.listCreated = lists[0].inserted_at
             this.title = lists[0].name
+            this.desc = lists[0].description
             this.lists = lists
 
             this.error = error
@@ -67,9 +71,18 @@ export default {
             this.tasksArr = tasks;
         },
        },
+      mounted() {
+        supabase
+        .from('lists')
+        .on('UPDATE', payload => {
+            this.title =  payload.new.name;
+            this.desc =  payload.new.description;
+        })
+        .subscribe();
+      },
         async created() {
-        this.listUUID = this.$route.params.uuid;
-        this.loadTasks();
+            this.listUUID = this.$route.params.uuid;
+            this.loadTasks();
         },
 }
 
