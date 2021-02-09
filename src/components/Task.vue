@@ -14,6 +14,7 @@
             v-model="task.title"
             @change="$emit('edit-task-title', task.uuid)"
             v-on:keyup="autoHeight"
+            :id="'title-' + task.uuid"
         >
             </textarea>
         

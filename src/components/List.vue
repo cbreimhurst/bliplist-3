@@ -13,6 +13,8 @@
         </h2>
         <p>{{desc}}</p>
      
+     <AddTask v-on:add-task="addTask" />
+
         <ul class="list">
             <li v-bind:key="task.uuid" :id="task.uuid" v-for="task in tasksArr">
             <Task v-bind:task="task" v-on:complete-task="markComplete" v-on:edit-task-title="editTaskTitle" v-on:edit-task-desc="editTaskDesc" />
@@ -32,11 +34,13 @@ const supabaseKey = process.env.VUE_APP_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 import Task from './../components/Task.vue';
+import AddTask from './../components/AddTask.vue';
 
 export default {
     name: 'List',
     components: {
         Task,
+        AddTask,
     },
     props: [
         "tasks",
@@ -126,6 +130,18 @@ export default {
                 .from('tasks')
                 .update({ text: desc })
                 .eq('uuid', taskID)
+        },
+        async addTask(task) {
+            console.log(task)
+            let d = new Date();
+            task.list_id = this.list_id;
+            let id = "title-" + task.uuid
+            await supabase.from("tasks").insert([task])
+            await supabase
+                .from('lists')
+                .update({ updated_at: d.toISOString() })
+                .eq('uuid', this.listUUID)
+            document.getElementById(id).focus()
         },
        },
       mounted() {

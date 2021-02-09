@@ -35,7 +35,7 @@ export default {
     userInfo : function(){ return this.$store.getters.userInfo}
   },
   mounted() {
-
+        // add stuff to watch for items in list
   },
     async created() {
 
@@ -47,7 +47,11 @@ export default {
 
             this.listsArr = lists
             this.error = error
+
+            // add stuff to count items in list
         }
+
+
 
     },
 }
