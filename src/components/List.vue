@@ -156,11 +156,22 @@ export default {
 
 
     <style>
+    h2 input[type="text"] {
+font-family: Avenir, Helvetica, Arial, sans-serif;
+-moz-osx-font-smoothing: grayscale;
+color: #2c3e50;
+background: #eee;
+border-radius: 4px;
+padding: 10px;
+border: none;
+box-sizing: border-box;
+        font-size: 24px;
+        font-weight: 900;
+width: 100%;
+max-width: 500px;
+    }
    :checked + input {
     text-decoration: line-through;
     opacity: .5;
-}
-input[type="text"] {
-    padding: 10px;
 }
     </style>
