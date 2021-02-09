@@ -56,3 +56,39 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+
+
+ul {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+li {
+  width: 49%;
+  margin-right: 1%;
+  margin-bottom: 10px;
+}
+
+
+a {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  background: #eee;
+  border-radius: 4px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+
+</style>
