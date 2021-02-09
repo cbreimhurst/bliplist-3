@@ -92,7 +92,7 @@ export default {
             // Get the computed styles for the element
             var computed = window.getComputedStyle(textarea);
 
-console.log(textarea.scrollHeight)
+
             // Calculate the height
             var height = parseInt(computed.getPropertyValue('border-top-width'), 10)
             + parseInt(computed.getPropertyValue('padding-top'), 10)

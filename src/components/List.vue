@@ -113,11 +113,18 @@ export default {
                 if(task.uuid == taskID)
                 return true;
             });
-            let title = taskItem.title
-            await supabase
+            if (taskItem.title) {
+                let title = taskItem.title
+                await supabase
+                    .from('tasks')
+                    .update({ title: title })
+                    .eq('uuid', taskID)
+            } else {
+                 await supabase
                 .from('tasks')
-                .update({ title: title })
+                .delete()
                 .eq('uuid', taskID)
+            }
         },
         async editTaskDesc(taskID) {
             let taskObj = this.tasksArr;
@@ -132,7 +139,6 @@ export default {
                 .eq('uuid', taskID)
         },
         async addTask(task) {
-            console.log(task)
             let d = new Date();
             task.list_id = this.list_id;
             let id = "title-" + task.uuid
@@ -179,23 +185,36 @@ export default {
     </script>
 
 
-    <style>
+    <style scoped>
     h2 input[type="text"] {
-font-family: Avenir, Helvetica, Arial, sans-serif;
--moz-osx-font-smoothing: grayscale;
-color: #2c3e50;
-background: #eee;
-border-radius: 4px;
-padding: 10px;
-border: none;
-box-sizing: border-box;
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -moz-osx-font-smoothing: grayscale;
+        color: #2c3e50;
+        background: #eee;
+        border-radius: 4px;
+        padding: 10px;
+        border: none;
+        box-sizing: border-box;
         font-size: 24px;
         font-weight: 900;
-width: 100%;
-max-width: 500px;
+        width: 100%;
+        max-width: 500px;
     }
-   :checked + input {
-    text-decoration: line-through;
-    opacity: .5;
-}
+
+
+    .all-lists button {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -moz-osx-font-smoothing: grayscale;
+        color: #2c3e50;
+        background: #eee;
+        border-radius: 84px;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        border: none;
+        text-align: left;
+        font-size: 1rem;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 3rem;
+    }
     </style>

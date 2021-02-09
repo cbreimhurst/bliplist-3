@@ -18,7 +18,7 @@ export default {
     }
   },
   methods: {
-    addTask() {     
+    addTask() {
       const newTask = {
         uuid: uuidv4(),
         title: '',
