@@ -11,7 +11,7 @@
       v-on:blur="updateTitle"
       >
         </h2>
-        <p>{{desc}}</p>
+        <p class="list-desc">{{desc}}</p>
      
      <AddTask v-on:add-task="addTask" />
 
@@ -204,7 +204,7 @@ export default {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
-        background: #eee;
+        background: #fff;
         border-radius: 4px;
         padding: 10px;
         border: none;
@@ -213,8 +213,24 @@ export default {
         font-weight: 900;
         width: 100%;
         max-width: 500px;
+        transition: all ease .2s;
     }
 
+        h2 input[type="text"]:focus {
+        background: #eee;
+    }
+
+.list-desc {
+            background: #fff;
+        border-radius: 4px;
+        padding: 10px;
+  margin-top: 0;
+  margin-bottom: 4rem;
+}
+
+h2 {
+  margin-bottom: 0;
+}
 
     .all-lists button {
         font-family: Avenir, Helvetica, Arial, sans-serif;
