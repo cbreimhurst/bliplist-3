@@ -119,8 +119,8 @@ ul, li {
 ul.task-item textarea  {
 font-family: Avenir, Helvetica, Arial, sans-serif;
 -moz-osx-font-smoothing: grayscale;
-color: #2c3e50;
-background: #eee;
+color: var(--font-color);
+  background-color: var(--field-color);
 border-radius: 4px;
 padding: 10px;
 box-sizing: border-box;
@@ -180,7 +180,7 @@ input[type=checkbox]{
 .task-item li label div {
   display: block;
   position: absolute;
-  border: 5px solid #AAAAAA;
+  border: 5px solid var(--secondary-color);
   border-radius: 100%;
   height: 15px;
   width: 15px;
@@ -193,7 +193,7 @@ input[type=checkbox]{
 
 
 .task-item li:hover div {
-  border: 5px solid #2c3e50;
+  border: 5px solid var(--primary-color);
 }
 
 .task-item li label div::before {
@@ -212,11 +212,19 @@ left: 3px;
 
 
 .task-item li label input[type=checkbox]:checked ~ div {
-  border: 5px solid #006135;
+  border: 5px solid var(--secondary-color);
 }
 
 .task-item li label input[type=checkbox]:checked ~ div::before{
-  background: #006135;
+  background: var(--secondary-color);
+}
+
+.task-item li:hover label input[type=checkbox]:checked ~ div {
+  border: 5px solid var(--primary-color);
+}
+
+.task-item li:hover label input[type=checkbox]:checked ~ div::before{
+  background: var(--primary-color);
 }
 
 

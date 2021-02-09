@@ -49,7 +49,7 @@ button {
     display: flex;
     font-size: 22px;
     font-weight: bold;
-    background: #eee;
+    background-color: var(--field-color);
     border: none;
     padding: 20px 30px;
     border-radius: 4px;

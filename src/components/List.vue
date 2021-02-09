@@ -203,8 +203,8 @@ export default {
     h2 input[type="text"] {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
-        background: #fff;
+        color: var(--font-color);
+        background-color: var(--bg-color);
         border-radius: 4px;
         padding: 10px;
         border: none;
@@ -217,11 +217,11 @@ export default {
     }
 
         h2 input[type="text"]:focus {
-        background: #eee;
+  background-color: var(--field-color);
     }
 
 .list-desc {
-            background: #fff;
+    background-color: var(--bg-color);
         border-radius: 4px;
         padding: 10px;
   margin-top: 0;
@@ -235,8 +235,8 @@ h2 {
     .all-lists button {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
-        background: #eee;
+        color: var(--font-color);
+  background-color: var(--field-color);
         border-radius: 84px;
         padding: 10px 20px;
         box-sizing: border-box;

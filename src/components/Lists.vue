@@ -75,8 +75,8 @@ li {
 a {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  background: #eee;
+  color: var(--font-color);
+  background-color: var(--field-color);
   border-radius: 4px;
   padding: 10px 20px;
   box-sizing: border-box;
