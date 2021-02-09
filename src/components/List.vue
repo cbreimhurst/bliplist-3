@@ -147,7 +147,7 @@ export default {
                 .from('lists')
                 .update({ updated_at: d.toISOString() })
                 .eq('uuid', this.listUUID)
-            document.getElementById(id).focus()
+            document.getElementById(id).focus().click()
         },
        },
       mounted() {
