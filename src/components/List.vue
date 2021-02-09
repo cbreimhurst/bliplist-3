@@ -12,17 +12,10 @@
       >
         </h2>
         <p>{{desc}}</p>
+     
         <ul class="list">
-            <li v-bind:key="task.uuid" :data-id="task.uuid" v-for="task in tasksArr">
-                <input type="checkbox">
-            <input 
-      type="text" 
-      spellcheck="false" 
-      autocomplete="off"
-      autocorrect="off"
-      autocapitalize="off"
-      :value="task.title"
-      >
+            <li v-bind:key="task.uuid" :id="task.uuid" v-for="task in tasksArr">
+            <Task v-bind:task="task" v-on:complete-task="markComplete" v-on:edit-task-title="editTaskTitle" v-on:edit-task-desc="editTaskDesc" />
             </li>
         </ul>
         <a href="/lists" class="all-lists"><button>← All Lists</button></a>
@@ -38,10 +31,12 @@ const supabaseUrl = 'https://ezobnhwtsnemtgajfsce.supabase.co'
 const supabaseKey = process.env.VUE_APP_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+import Task from './../components/Task.vue';
+
 export default {
     name: 'List',
     components: {
- 
+        Task,
     },
     props: [
         "tasks",
@@ -94,7 +89,44 @@ export default {
             .update({ name: this.title })
             .eq('uuid', this.listUUID)
             console.log(data+error)
-            }
+            },
+        async markComplete(taskID) {
+            let taskObj = this.tasksArr;
+            var taskItem = taskObj.find(function(task) {
+                if(task.uuid == taskID)
+                return true;
+            });
+            taskItem.completed = !taskItem.completed
+            let complete = taskItem.completed
+            await supabase
+                .from('tasks')
+                .update({ completed: complete })
+                .eq('uuid', taskID)
+        },
+        async editTaskTitle(taskID) {
+            let taskObj = this.tasksArr;
+            var taskItem = taskObj.find(function(task) {
+                if(task.uuid == taskID)
+                return true;
+            });
+            let title = taskItem.title
+            await supabase
+                .from('tasks')
+                .update({ title: title })
+                .eq('uuid', taskID)
+        },
+        async editTaskDesc(taskID) {
+            let taskObj = this.tasksArr;
+            var taskItem = taskObj.find(function(task) {
+                if(task.uuid == taskID)
+                return true;
+            });
+            let desc = taskItem.text
+            await supabase
+                .from('tasks')
+                .update({ text: desc })
+                .eq('uuid', taskID)
+        },
        },
       mounted() {
         supabase
@@ -102,6 +134,15 @@ export default {
         .on('UPDATE', payload => {
             this.title =  payload.new.name;
             this.desc =  payload.new.description;
+        })
+        .subscribe();
+
+         supabase
+        .from('tasks')
+        .on('UPDATE', payload => {
+            let updatedUUID = payload.new.uuid
+            let taskArrItem = this.tasksArr.findIndex(x => x.uuid === updatedUUID)
+            Object.assign(this.tasksArr[taskArrItem], payload.new);
         })
         .subscribe();
       },
