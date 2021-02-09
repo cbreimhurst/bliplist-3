@@ -144,6 +144,14 @@ export default {
             let taskArrItem = this.tasksArr.findIndex(x => x.uuid === updatedUUID)
             Object.assign(this.tasksArr[taskArrItem], payload.new);
         })
+        .on('INSERT', payload => {
+             this.tasksArr.unshift(payload.new);
+        })
+        .on("DELETE", payload => {
+            const id = payload.old.id;
+            const index = this.tasksArr.map(x => x.id).indexOf(id);
+            this.tasksArr.splice(index, 1)
+        })
         .subscribe();
       },
         async created() {

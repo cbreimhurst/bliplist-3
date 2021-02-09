@@ -13,6 +13,7 @@
             autocapitalize="off"
             v-model="task.title"
             @change="$emit('edit-task-title', task.uuid)"
+            v-on:keyup="autoHeight"
         >
             </textarea>
         
@@ -26,8 +27,6 @@
             v-model="task.text" 
             @change="$emit('edit-task-desc', task.uuid)"
             v-on:keyup="autoHeight"
-            oninput="this.parentNode.dataset.value = this.value" 
-            rows="1" 
         >
                 </textarea>
     </li>
@@ -58,7 +57,6 @@ export default {
 
         // Get the computed styles for the element
         var computed = window.getComputedStyle(field);
-        console.log(field.scrollHeight)
 
         // Calculate the height
         var height = parseInt(computed.getPropertyValue('border-top-width'), 10)
@@ -73,9 +71,34 @@ export default {
       mounted() {
        
       },
-        async created() {
-         
-        },
+    async created() {
+
+        var forEach = function (arr, callback) {
+            Array.prototype.forEach.call(arr, callback);
+        };
+
+
+        let textareas = document.querySelectorAll('textarea')
+        
+        forEach(textareas, function (textarea) {
+
+              textarea.style.height = 'inherit';
+
+            // Get the computed styles for the element
+            var computed = window.getComputedStyle(textarea);
+
+            // Calculate the height
+            var height = parseInt(computed.getPropertyValue('border-top-width'), 10)
+            + parseInt(computed.getPropertyValue('padding-top'), 10)
+            + textarea.scrollHeight
+            + parseInt(computed.getPropertyValue('padding-bottom'), 10)
+            + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
+
+            textarea.style.height = height + 'px';
+        });
+
+
+    },
 }
 </script>
 <style>
@@ -97,7 +120,7 @@ border: none;
 resize: none;
 width: 100%;
 max-width: 500px;
-min-height: 1.5rem;
+/* min-height: 1.5rem; */
     max-height: 50vh;
 }
 
@@ -105,35 +128,6 @@ ul.task-item.completed textarea  {
     text-decoration: line-through;
   }
 
- /* ul.task-item li {
-  display: inline-grid;
-  vertical-align: top;
-  align-items: center;
-  position: relative;
-}
 
-ul.task-item li::after {
-  grid-area: 2/1;
-}
-ul.task-item li::after {
-  width: auto;
-  min-width: 1em;
-  grid-area: 1/2;
-  font: inherit;
-  padding: 0.25em;
-  margin: 0;
-  resize: none;
-  background: none;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border: none;
-}
-
-ul.task-item li::after {
-  content: attr(data-value) " ";
-  visibility: hidden;
-  white-space: pre-wrap;
-} */
 
 </style>
