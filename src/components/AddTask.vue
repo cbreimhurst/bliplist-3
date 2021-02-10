@@ -52,7 +52,7 @@ button {
   position: relative;
 }
 .add-task::before {
-  content: ';;
+  content: '';
   background-color: var(--secondary-color);
   position: absolute;
   left: -20px;
@@ -62,7 +62,7 @@ button {
 }
 
 .add-task::after {
-    content: ';;
+    content: '';
   background-color: var(--secondary-color);
   position: absolute;
   width: 5px;
