@@ -237,4 +237,8 @@ left: 3px;
 }
 
 
+ul.task-item .desc textarea {
+    display: none;
+}
+
 </style>
