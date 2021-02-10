@@ -103,9 +103,11 @@ body {
     --heading-color: #f4f3f0;
 }
 
-[data-theme="dark"] a {
+a {
     color: var(--primary-color);
 }
+
+
 
 
 
