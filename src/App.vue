@@ -121,6 +121,8 @@ body {
 .container {
     max-width: 500px;
   margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 body, input[type="text"], textarea {
