@@ -1,7 +1,7 @@
 <template>
   <header>
       <h2><span class="logo__cursor"></span><a href="/">bliplist</a></h2>
-<button @click="logout">log out</button>      
+<!-- <button @click="logout">log out</button>       -->
 <div class="mode-toggle">
         <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M7.5 1.5v-1m0 13.99v-.998m6-5.997h1m-13 0h-1m2-4.996l-1-1m12 0l-1 1m-10 9.993l-1 1m12 0l-1-1m-2-4.997a2.999 2.999 0 01-3 2.998 2.999 2.999 0 113-2.998z" stroke="currentColor" stroke-linecap="square"></path></svg>
         <button type="button" class="btn btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off" v-on:click="toggleMode()">
@@ -29,11 +29,28 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 11px 0;
+}
+
+
+
+
+h2 {
+    margin: 0;
+}
 
 .mode-toggle,
 .mode-toggle * {
     cursor: pointer;
+}
+
+.mode-toggle {
+  margin-left: auto;
 }
 
 .btn {

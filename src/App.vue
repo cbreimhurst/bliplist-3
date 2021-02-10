@@ -1,5 +1,6 @@
 <template>
     <div id="app" v-on:mode="toggle" :data-theme="mode">
+      <div class="container">
         <Header :mode="mode" @toggle="toggle" />
         <div id="nav">
       <router-link to="/">Home</router-link> |
@@ -10,8 +11,8 @@
       </div> 
     </div>
     <router-view/>
-  
     <!-- <pre v-if="this.$store.state">{{$store.state}}</pre> -->
+  </div>
   </div>
 </template>
 
@@ -53,6 +54,7 @@ export default {
     watch: {
             mode: {
                async handler(value) {
+                // console.log(value)
                  let uuid = this.userInfo.id
                       await supabase
                         .from('user_profile')
@@ -64,19 +66,24 @@ export default {
     async created() {
       if(this.userInfo){
         let uuid = this.userInfo.id
-          const { data: user_profile, error } = await supabase
-          .from('user_profile')
-          .select('display_mode')
-          .eq('uuid', uuid)
-          console.log(user_profile)
-          console.log(error)
-        this.mode = this.userInfo
+
+         let { data: user_profile, error } = await supabase
+            .from('user_profile')
+            .select("*")
+            .eq('uuid', uuid)
+          
+          console.log('error ' + error)
+          this.mode = user_profile[0].display_mode
       }
     }
 }
 </script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+}
 :root {
     --primary-color: #302AE6;
     --secondary-color: #536390;
@@ -96,16 +103,24 @@ export default {
     --heading-color: #f4f3f0;
 }
 
+[data-theme="dark"] a {
+    color: var(--primary-color);
+}
+
 
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-width: 500px;
-  margin: 0 auto;
   background-color: var(--bg-color);
   color: var(--font-color);
+  min-height: 100vh;
+}
+
+.container {
+    max-width: 500px;
+  margin: 0 auto;
 }
 
 body, input[type="text"], textarea {

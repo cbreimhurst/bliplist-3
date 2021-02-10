@@ -2,7 +2,7 @@
  <div>
 
       <button @click="newlist">New List</button>
-{{userInfo}}
+
  </div>
 </template>
 
@@ -54,7 +54,7 @@ button {
     padding: 20px 30px;
     border-radius: 4px;
     margin: 10vh auto;
-
+color: var(--font-color);
     cursor: pointer;
 }
 

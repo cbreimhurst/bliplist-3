@@ -229,7 +229,7 @@ left: 3px;
 
 
 .task-item.completed .title textarea {
-  background: #fff;
+  background: var(--bg-color);
 }
 
 .task-item.completed .desc {
