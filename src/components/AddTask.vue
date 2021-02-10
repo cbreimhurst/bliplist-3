@@ -1,6 +1,6 @@
 <template>
 <div class="add-task-wrap">
-    <button @click="addTask" class="add-task">+ Add a task</button>
+    <button @click="addTask" class="add-task">Add a task</button>
     </div>
 </template>
 
@@ -40,7 +40,7 @@ button {
     -moz-osx-font-smoothing: grayscale;
     color: var(--font-color);
   background-color: var(--field-color);
-    border-radius: 84px;
+    border-radius: 4px;
     padding: 10px 20px;
     box-sizing: border-box;
     border: none;
@@ -48,5 +48,28 @@ button {
     text-align: left;
     font-size: 1rem;
     cursor: pointer;
+  margin-left: 30px;
+  position: relative;
 }
+.add-task::before {
+  content: ';;
+  background-color: var(--secondary-color);
+  position: absolute;
+  left: -20px;
+  width: 5px;
+  height: 25px;
+  border-radius: 1px;
+}
+
+.add-task::after {
+    content: ';;
+  background-color: var(--secondary-color);
+  position: absolute;
+  width: 5px;
+  height: 25px;
+  border-radius: 1px;
+  left: -30px;
+  top: 20px;
+}
+
 </style>
