@@ -65,8 +65,8 @@ button {
     content: '';
   background-color: var(--secondary-color);
   position: absolute;
-  width: 5px;
-  height: 25px;
+  width: 25px;
+  height: 5px;
   border-radius: 1px;
   left: -30px;
   top: 20px;
