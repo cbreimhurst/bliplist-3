@@ -87,6 +87,7 @@ body {
 :root {
     --primary-color: #302AE6;
     --secondary-color: #536390;
+    --highlight-color: gold;
     --field-color: #eee;
     --font-color: #2c3e50;
     --bg-color: #fff;

@@ -83,11 +83,11 @@ h2 {
     width: 3rem;
     border-radius: 1.5rem;
     color: #6b7381;
-    background: #bdc1c8;
+    background: var(--highlight-color);
 }
 
 [data-theme="dark"] .btn-toggle {
-    background-color: #c1c04a;
+    background-color: var(--secondary-color);
 }
 
 [type="reset"], [type="submit"], button, html [type="button"] {
@@ -146,7 +146,7 @@ h2 {
 [data-theme="dark"] .btn-toggle > .handle {
     left: 1.6875rem;
     transition: left 0.25s, background .25s;
-    background:#192734;
+    background:var(--field-color);
 }
 
 
