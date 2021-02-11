@@ -44,7 +44,7 @@ button {
     padding: 10px 20px;
     box-sizing: border-box;
     border: none;
-    width: 100%;
+    width: calc(100% - 30px);
     text-align: left;
     font-size: 1rem;
     cursor: pointer;
